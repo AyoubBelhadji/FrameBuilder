@@ -26,6 +26,6 @@ Q = get_orthogonal_matrix_using_givens(N,d,lv_scores_vector)
 #plt.scatter(Q[:,0], Q[:,1])
 #plt.show()
 
-print(Q)
+print("ok")
 
 # #### We observe that almost all the points are aligned with the canonical axis
