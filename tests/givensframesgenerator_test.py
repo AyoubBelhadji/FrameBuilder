@@ -23,8 +23,9 @@ Q = get_orthogonal_matrix_using_givens(N,d,lv_scores_vector)
 # ## Scatter the cloud of points
 
 
-plt.scatter(Q[:,0], Q[:,1])
-plt.show()
+#plt.scatter(Q[:,0], Q[:,1])
+#plt.show()
 
+print(Q)
 
 # #### We observe that almost all the points are aligned with the canonical axis
