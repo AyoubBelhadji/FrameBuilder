@@ -6,11 +6,11 @@ from FrameBuilder.givensbuilder import *
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 1000
+N = 50
 d = 2
 
 #lv_scores_vector = d/N*np.ones(N)
-lv_scores_vector = np.linspace(1, 1000, num=N)
+lv_scores_vector = np.linspace(1, 50, num=N)
 lv_scores_vector = d*lv_scores_vector/(np.sum(lv_scores_vector))
 
 
