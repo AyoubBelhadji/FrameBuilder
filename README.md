@@ -1,4 +1,5 @@
 # FrameBuilder
+https://travis-ci.org/AyoubBelhadji/FrameBuilder.svg?branch=master
 
 ## Introduction
 FrameBuilder is a Python library for constructing structured finite frames.
