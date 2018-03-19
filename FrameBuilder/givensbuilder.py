@@ -4,6 +4,11 @@ def get_orthogonal_matrix_using_givens(N,d,lv_scores_vector):
   # ## Transforming an idendity matrix to an orthogonal matrix with prescribed lengths
 
   # In[4]:
+# ## Initialisation by the identity matrix
+
+  Q = np.zeros((N,d))
+  for _ in range(0,d):
+      Q[_,_] = 1
 
 
   i = d-1
