@@ -4,6 +4,8 @@
 # In[1]:
 from FrameBuilder.givensbuilder import *
 import numpy as np
+import matplotlib.pyplot as plt
+
 N = 1000
 d = 2
 
