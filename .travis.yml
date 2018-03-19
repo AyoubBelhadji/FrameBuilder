@@ -33,5 +33,5 @@ install:
 # Command to run tests. These are run for each configuration
 script: 
   - python --version
-  - pytest /tests/givensframesgenerator_test.py
+  - pytest tests/givensframesgenerator_test.py
 #  - cd docs && make html && make doctest SPHINXOPTS=-W #Make doctest treat warnings as errors, to detect problems in autodoc
