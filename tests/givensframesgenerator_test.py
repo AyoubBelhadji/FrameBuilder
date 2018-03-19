@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[1]:
-from FrameBuilder.givensbuilder import *
+from ..FrameBuilder import givensbuilder
 
 N = 1000
 d = 2
