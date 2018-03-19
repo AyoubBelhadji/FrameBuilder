@@ -1,4 +1,5 @@
 # ## Givens Rotations generators
+import numpy as np
 
 def t_func(q_i,q_j,q_ij,l_i,l_j): 
     # t in section 3.1 Dhillon (2005) 
