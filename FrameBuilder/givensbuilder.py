@@ -1,4 +1,5 @@
-from FrameBuilder import givenshelpers
+from givenshelpers import *
+import numpy as np
 
 def get_orthogonal_matrix_using_givens(N,d,lv_scores_vector):
   # ## Transforming an idendity matrix to an orthogonal matrix with prescribed lengths
@@ -24,12 +25,12 @@ def get_orthogonal_matrix_using_givens(N,d,lv_scores_vector):
       G = np.eye(N)
       if delta_i <= delta_j:
           l_k = q_i + q_j -l_i
-          G = givenshelpers.G_func(i,j,q_i,q_j,q_ij,l_i,l_k,N)
+          G = G_func(i,j,q_i,q_j,q_ij,l_i,l_k,N)
           Q = np.dot(G,Q)
           i = i-1
       else:
           l_k = q_i + q_j -l_j
-          G = givenshelpers.G_func(i,j,q_j,q_i,q_ij,l_j,l_k,N)
+          G = G_func(i,j,q_j,q_i,q_ij,l_j,l_k,N)
           Q = np.dot(G,Q)
           j = j+1
   return Q
