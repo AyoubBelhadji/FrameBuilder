@@ -10,13 +10,9 @@ def get_index_lists_I_and_J(E,n,N,d):
             del J_n[m_max]
     return I_n,J_n
 
-
-
 def diff_of_lists(first, second):
         second = set(second)
         return [item for item in first if item not in second]
-
-
 
 def get_permutation_I(I_n,d):
     permutation = [0]*d
@@ -30,21 +26,13 @@ def get_permutation_I(I_n,d):
     return permutation
 
 
-def d_minus_x(x):
-    return d-x-1
-
-
-
 def get_v_n_w_n(E,I_n,J_n,d,n):
     r_n = np.shape(I_n)[0]
     v_n = np.zeros((r_n))
     w_n = np.zeros((r_n))
     permutation_I_n = get_permutation_I(I_n,d)
     permutation_J_n = get_permutation_I(J_n,d)
-    #print(n)
     for m in I_n:
-        #print(m)
-        #print(d_minus_x(m))
         v_n_index = permutation_I_n[m]
         nom_v_n = E[m,n]*np.ones((r_n,1)) - E[list(J_n),n+1]
         I_n_without_m = diff_of_lists(I_n,[m])
@@ -105,13 +93,9 @@ def get_extended_matrix_W(W_n_matrix,d):
 def get_F(d,N,E):
     F_test = np.zeros((d,N))
     for n in range(N):
-        #print(n)
         F_test[:,n] = get_F_n(n+1,d,N,E)
     return F_test
 
-
-  
-  
 
 def get_U_n(n,d,N,E):    
     if n==1:
@@ -119,30 +103,19 @@ def get_U_n(n,d,N,E):
     else:
 
         I_n,J_n = get_index_lists_I_and_J(E,n-1,N,d)
-        #print(I_n)
-        #print(J_n)
         r_n = np.shape(I_n)[0]
         permutation_matrix_I_n = get_permutation_matrix(get_permutation_I(I_n,d),d)
-        #print(permutation_matrix_I_n)
         permutation_matrix_J_n = get_permutation_matrix(get_permutation_I(J_n,d),d)
-        #print(permutation_matrix_J_n)
         v_n,w_n = get_v_n_w_n(E,I_n,J_n,d,n-1)
-        #print(v_n)
-        #print(w_n)
         W_n_matrix = get_W_n_matrix(E,I_n,J_n,d,n-1)
         W_extended = get_extended_matrix_W(get_W_n_matrix(E,I_n,J_n,d,n-1),d)
         U_n = np.zeros((d,d))
         U_n_1 = get_U_n(n-1,d,N,E)
-        #print(U_n_1)
-        #print(W_extended)
-        #print(W_n_matrix)
 
         U_n_plus_one = np.dot(np.dot(np.dot(U_n_1,np.transpose(permutation_matrix_I_n)),W_extended),permutation_matrix_J_n)
-        #print(n)
         return U_n_plus_one
 
 def get_F_n(n,d,N,E):
-    #print(n)
     if n==1:
         M = np.eye(d)
         v = M[:,0]
