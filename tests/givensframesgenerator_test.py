@@ -16,7 +16,7 @@ I_sorting =  list(reversed(np.argsort(lv_scores_vector)))
 lv_scores_vector = np.asarray(list(reversed(np.sort(lv_scores_vector))))
 
 
-Q = FrameBuilder.givensbuilder.get_orthogonal_matrix_using_givens(N,d,lv_scores_vector)
+Q = get_orthogonal_matrix_using_givens(N,d,lv_scores_vector)
 
 # ## Scatter the cloud of points
 
