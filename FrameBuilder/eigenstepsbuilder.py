@@ -1,3 +1,6 @@
+from FrameBuilder.eigensteps import *
+import numpy as np
+
 def get_index_lists_I_and_J(E,n,N,d):
     I_n = list(range(d))
     J_n = list(range(d))
