@@ -9,7 +9,7 @@ Welcome to FrameBuilder's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   reference.eigensteps
+   FrameBuilder
 
 
 Indices and tables
@@ -18,4 +18,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-* :ref:`reference.eigensteps`
+* :ref:`FrameBuilder`
