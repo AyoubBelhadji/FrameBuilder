@@ -89,37 +89,15 @@ def get_extended_matrix_W(W_n_matrix,d):
     W_extended[0:r_n,0:r_n] = W_n_matrix
     return W_extended
 
+def generate_random_diagonal_unimodular_matrix(d):
+    vector = np.ones((1,d)) - 2*np.random.binomial(1, 0.5, d)
+    return np.diag(vector[0])
 
-def get_F(d,N,E):
-    F_test = np.zeros((d,N))
-    for n in range(N):
-        F_test[:,n] = get_F_n(n+1,d,N,E)
-    return F_test
-
-
-def get_U_n(n,d,N,E):    
-    if n==1:
-        return np.eye(d)
-    else:
-
-        I_n,J_n = get_index_lists_I_and_J(E,n-1,N,d)
-        r_n = np.shape(I_n)[0]
-        permutation_matrix_I_n = get_permutation_matrix(get_permutation_I(I_n,d),d)
-        permutation_matrix_J_n = get_permutation_matrix(get_permutation_I(J_n,d),d)
-        v_n,w_n = get_v_n_w_n(E,I_n,J_n,d,n-1)
-        W_n_matrix = get_W_n_matrix(E,I_n,J_n,d,n-1)
-        W_extended = get_extended_matrix_W(get_W_n_matrix(E,I_n,J_n,d,n-1),d)
-        U_n = np.zeros((d,d))
-        U_n_1 = get_U_n(n-1,d,N,E)
-
-        U_n_plus_one = np.dot(np.dot(np.dot(U_n_1,np.transpose(permutation_matrix_I_n)),W_extended),permutation_matrix_J_n)
-        return U_n_plus_one
-
-def get_F_n(n,d,N,E):
+def get_F_n_U_n(n,d,N,E,mu_vector,U_n_1):
     if n==1:
         M = np.eye(d)
-        v = M[:,0]
-        return v
+        v = np.sqrt(mu_vector[0])*M[:,0]
+        return v,np.eye(d)
     I_n,J_n = get_index_lists_I_and_J(E,n-1,N,d)
     r_n = np.shape(I_n)[0]
     permutation_matrix_I_n = get_permutation_matrix(get_permutation_I(I_n,d),d)
@@ -127,6 +105,20 @@ def get_F_n(n,d,N,E):
     v_n,w_n = get_v_n_w_n(E,I_n,J_n,d,n-1)
     W_extended = get_extended_matrix_W(get_W_n_matrix(E,I_n,J_n,d,n-1),d)
     v_padded = get_padded_vector(v_n,d)
-    U_n_1 = get_U_n(n-1,d,N,E)
-    f_n = np.dot(np.dot(U_n_1,np.transpose(permutation_matrix_I_n)),v_padded)
-    return f_n
+    V_n = generate_random_diagonal_unimodular_matrix(d)
+    U_n = np.dot(np.dot(np.dot(np.dot(U_n_1,V_n),np.transpose(permutation_matrix_I_n)),W_extended),permutation_matrix_J_n)
+    f_n = np.dot(np.dot(np.dot(U_n_1,V_n),np.transpose(permutation_matrix_I_n)),v_padded)
+    return f_n,U_n
+
+def get_F(d,N,E,mu_vector):
+    F_test = np.zeros((d,N))
+    U_n_1 = np.eye(d)
+    for n in range(N):
+        #print(n)
+        if n ==0:
+            M = np.eye(d)
+            F_test[:,n],U_n_1 = get_F_n_U_n(n+1,d,N,E,mu_vector,M)
+        else:
+            F_test[:,n],U_n_1 = get_F_n_U_n(n+1,d,N,E,mu_vector,U_n_1)
+    return F_test
+
