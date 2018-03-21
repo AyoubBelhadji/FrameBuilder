@@ -14,7 +14,7 @@ def get_eigensteps_random(mu_vector,lambda_vector,N,d):
         The dimension of the vector space
     Returns
     -------
-    E : The inner eigensteps matrix/vector
+    E : array_type
     '''
     E = np.zeros((N,N))
     E[:,N-1] = lambda_vector
@@ -44,7 +44,7 @@ def get_eigensteps_mean(mu_vector,lambda_vector,N,d):
         The dimension of the vector space
     Returns
     -------
-    E : The inner eigensteps matrix/vector
+    E : array_type
     '''
     E = np.zeros((N,N))
     E[:,N-1] = lambda_vector
@@ -60,6 +60,22 @@ def get_eigensteps_mean(mu_vector,lambda_vector,N,d):
     return E
 
 def get_index_lists_I_and_J(E,n,N,d):
+    ''' Construct the subsets I_n and J_n
+    Parameters
+    ----------
+    E : array_type
+        The matrix of eigensteps
+    n : int
+        The level of eigenvalues
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    I_n : list
+    J_n : list
+    '''
     I_n = list(range(d))
     J_n = list(range(d))
     n_ = n+1
@@ -72,10 +88,29 @@ def get_index_lists_I_and_J(E,n,N,d):
     return I_n,J_n
 
 def diff_of_lists(first, second):
+    ''' Construct the difference between two lists
+    Parameters
+    ----------
+    first : list
+        The first list
+    second : list
+        The second list
+    '''
         second = set(second)
         return [item for item in first if item not in second]
 
 def get_permutation_I(I_n,d):
+    ''' Construct the permutation from I_n or J_n
+    Parameters
+    ----------
+    I_n : list
+        The list I_n
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    permutation : list
+    '''
     permutation = [0]*d
     r_n = np.shape(I_n)[0]
     complementary_I_n = diff_of_lists(list(range(d)),I_n)
