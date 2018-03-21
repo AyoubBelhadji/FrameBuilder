@@ -1,7 +1,81 @@
-from FrameBuilder.eigensteps import *
 import numpy as np
 
+def get_eigensteps_random(mu_vector,lambda_vector,N,d):
+    ''' Construct a valid random point in the GT polytope.
+    Parameters
+    ----------
+    mu_vector : array_type
+                The vector of lengths
+    lambda_vector : array_type
+                The vector of spectrum
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    E : array_type
+    '''
+    E = np.zeros((N,N))
+    E[:,N-1] = lambda_vector
+    for n in range(N-2,-1,-1):
+        for k in range(n, -1, -1):
+            A_n_1_k = max(E[k+1,n+1],np.sum(E[k:n+2,n+1])-np.sum(E[k+1:n+1,n])-mu_vector[n+1])
+            B_array = np.zeros(k+1)
+            for l in range(k+1):
+                B_array[l] = np.sum(mu_vector[l:n+1])-np.sum(E[l+1:k+1,n+1])-np.sum(E[k+1:n+1,n])
+            B_n_1_k = min(E[k,n+1],min(B_array))
+            u = np.random.uniform(0,1)
+            delta_n_1_k = B_n_1_k - A_n_1_k
+            E[k,n] = A_n_1_k + u*delta_n_1_k
+    return E
+
+def get_eigensteps_mean(mu_vector,lambda_vector,N,d):
+    ''' Construct a valid point in the GT polytope.
+    Parameters
+    ----------
+    mu_vector : array_type
+                The vector of lengths
+    lambda_vector : array_type
+                The vector of spectrum
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    E : array_type
+    '''
+    E = np.zeros((N,N))
+    E[:,N-1] = lambda_vector
+    for n in range(N-2,-1,-1):
+        for k in range(n, -1, -1):
+            A_n_1_k = max(E[k+1,n+1],np.sum(E[k:n+2,n+1])-np.sum(E[k+1:n+1,n])-mu_vector[n+1])
+            B_array = np.zeros(k+1)
+            for l in range(k+1):
+                B_array[l] = np.sum(mu_vector[l:n+1])-np.sum(E[l+1:k+1,n+1])-np.sum(E[k+1:n,n])
+            B_n_1_k = min(E[k,n+1],min(B_array))
+            u = np.random.uniform(0,1)
+            E[k,n] = A_n_1_k
+    return E
+
 def get_index_lists_I_and_J(E,n,N,d):
+    ''' Construct the subsets I_n and J_n
+    Parameters
+    ----------
+    E : array_type
+        The matrix of eigensteps
+    n : int
+        The level of eigenvalues
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    I_n : list
+    J_n : list
+    '''
     I_n = list(range(d))
     J_n = list(range(d))
     n_ = n+1
@@ -14,10 +88,29 @@ def get_index_lists_I_and_J(E,n,N,d):
     return I_n,J_n
 
 def diff_of_lists(first, second):
-        second = set(second)
-        return [item for item in first if item not in second]
+    ''' Construct the difference between two lists
+    Parameters
+    ----------
+    first : list
+        The first list
+    second : list
+        The second list
+    '''
+    second = set(second)
+    return [item for item in first if item not in second]
 
 def get_permutation_I(I_n,d):
+    ''' Construct the permutation from I_n or J_n
+    Parameters
+    ----------
+    I_n : list
+        The list I_n
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    permutation : list
+    '''
     permutation = [0]*d
     r_n = np.shape(I_n)[0]
     complementary_I_n = diff_of_lists(list(range(d)),I_n)
