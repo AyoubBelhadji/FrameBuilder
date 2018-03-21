@@ -1,6 +1,21 @@
 import numpy as np
 
 def get_eigensteps_random(mu_vector,lambda_vector,N,d):
+    ''' Construct a valid random point in the GT polytope.
+    Parameters
+    ----------
+    mu_vector : array_type
+                The vector of lengths
+    lambda_vector : array_type
+                The vector of spectrum
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    E : The inner eigensteps matrix/vector
+    '''
     E = np.zeros((N,N))
     E[:,N-1] = lambda_vector
     for n in range(N-2,-1,-1):
@@ -16,6 +31,21 @@ def get_eigensteps_random(mu_vector,lambda_vector,N,d):
     return E
 
 def get_eigensteps_mean(mu_vector,lambda_vector,N,d):
+    ''' Construct a valid point in the GT polytope.
+    Parameters
+    ----------
+    mu_vector : array_type
+                The vector of lengths
+    lambda_vector : array_type
+                The vector of spectrum
+    N : int
+        The number of elements in the frame
+    d : int
+        The dimension of the vector space
+    Returns
+    -------
+    E : The inner eigensteps matrix/vector
+    '''
     E = np.zeros((N,N))
     E[:,N-1] = lambda_vector
     for n in range(N-2,-1,-1):
