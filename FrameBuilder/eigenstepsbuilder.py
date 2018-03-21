@@ -96,8 +96,8 @@ def diff_of_lists(first, second):
     second : list
         The second list
     '''
-        second = set(second)
-        return [item for item in first if item not in second]
+    second = set(second)
+    return [item for item in first if item not in second]
 
 def get_permutation_I(I_n,d):
     ''' Construct the permutation from I_n or J_n
