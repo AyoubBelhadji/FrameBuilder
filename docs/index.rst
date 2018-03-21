@@ -8,14 +8,8 @@ Welcome to FrameBuilder's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
    FrameBuilder
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-* :ref:`FrameBuilder`
