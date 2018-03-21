@@ -1,6 +1,6 @@
 # FrameBuilder
 [![Build Status](https://travis-ci.org/AyoubBelhadji/FrameBuilder.svg?branch=master)](https://travis-ci.org/AyoubBelhadji/FrameBuilder)
-
+[![Documentation Status](https://readthedocs.org/projects/framebuilder/badge/?version=latest)](http://framebuilder.readthedocs.io/en/latest/?badge=latest)
 
 ## Introduction
 FrameBuilder is a Python library for constructing structured finite frames.
