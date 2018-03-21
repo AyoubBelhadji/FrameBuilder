@@ -2,7 +2,6 @@
 
 # In[1]:
 from FrameBuilder.eigenstepsbuilder import *
-from FrameBuilder.eigensteps import *
 import numpy as np
 import matplotlib.pyplot as plt
 
