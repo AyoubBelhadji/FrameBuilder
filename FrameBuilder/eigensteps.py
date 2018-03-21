@@ -1,3 +1,5 @@
+import numpy as np
+
 def get_eigensteps_random(mu_vector,lambda_vector,N,d):
     E = np.zeros((N,N))
     E[:,N-1] = lambda_vector
