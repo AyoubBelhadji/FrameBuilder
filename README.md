@@ -15,9 +15,19 @@ This library (will) cover the following articles:
 
 > Matthew Fickus, Dustin G. Mixon, Miriam J. Poteet, Nate Strawn: "Constructing all self-adjoint matrices with prescribed spectrum and diagonal", 2011;[arXiv:1107.2173](https://arxiv.org/abs/1107.2173)
 
+
 ## Requirements
 
-FrameBuilder works with Python ..??
+FrameBuilder works with [Python 3.4+] (http://docs.python.org/3/)
 
+## Installation
+Install the package using the instructions
+```bash
+cd FrameBuilder
+pip install .
+```
 
 ## Dependencies
+- [NumPy](http://www.numpy.org)
+- [SciPy](http://www.scipy.org/)
+- [Matplotlib](http://matplotlib.org/)
