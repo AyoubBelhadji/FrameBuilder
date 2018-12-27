@@ -18,7 +18,7 @@ This library (will) cover the following articles:
 
 ## Requirements
 
-FrameBuilder works with [Python 3.4+] (http://docs.python.org/3/)
+FrameBuilder works with [Python 3.4+](http://docs.python.org/3/)
 
 ## Installation
 Install the package using the instructions
