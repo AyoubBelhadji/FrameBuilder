@@ -12,6 +12,7 @@
 *.synctex.gz
 *.toc
 *.pdf
+*.png
 # OS generated files #
 ######################
 .DS_Store
